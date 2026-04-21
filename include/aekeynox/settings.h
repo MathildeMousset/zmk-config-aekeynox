@@ -24,8 +24,10 @@
 // #define MACOS
 // #define LINUX
 
-// [Expertmental]
-#define ENABLE_ALT_KEYPAD
+
+/******************************************************************************
+ * Keyboard Emulation
+******************************************************************************/
 
 // [Experimental]
 // Uncomment one of the following lines to enable layout emulation:
@@ -35,7 +37,12 @@
 // #define KB_EMULATION_QWERTY_LAFAYETTE // assumes the host is in QWERTY-intl or AZERTY
 
 // [Experimental]
-// Uncomment the following line for an improved dead key support;
+// Uncomment the following line for an improved non-ASCII support on Windows:
+
+#define ENABLE_ALT_KEYPAD
+
+// [Experimental]
+// Uncomment the following line for an improved dead key support:
 // (only applies to some Hummingbird keymaps and layout emulations)
 
 // #define ENABLE_FANCY_DEAD_KEYS
@@ -106,3 +113,12 @@
 // Beware: this increases the typing load of the left thumb.
 
 // #define LEFT_HAND_SPACE
+
+
+/******************************************************************************
+ * Safeguards (should be in a separate file?)
+*****************************************************************************/
+
+#ifdef LOW_MEMORY_DEVICE
+  #undef ENABLE_ALT_KEYPAD
+#endif
