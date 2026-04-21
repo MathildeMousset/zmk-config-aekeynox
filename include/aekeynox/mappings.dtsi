@@ -58,8 +58,8 @@
     a1xx: a1xx {
       compatible = "zmk,behavior-macro-two-param";
       #binding-cells = <2>;
-      wait-ms = <20>;
-      tap-ms = <20>;
+      tap-ms = <0>;
+      wait-ms = <0>;
       bindings
         = <&macro_press &kp LALT>
         , <&macro_tap &kp KP_N1>
