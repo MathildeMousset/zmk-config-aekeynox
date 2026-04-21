@@ -87,9 +87,16 @@
   #define C_AE   &kp RA(X) // æ
   #define C_SZ   &kp RA(S) // ß
   #define C_NTLD &kp N // unsupported
+#elifdef MACOS
+  #define C_OE   &kp RA(O) // œ
+  #define C_AE   &kp RA(Z) // æ
+  #define C_SZ   &digraph S S // unsupported
+  #define C_NTLD &kp N // unsupported
 #elifdef ENABLE_ALT_KEYPAD
-  #define C_OE   &a01xx KP_N4 KP_N0 // œ
-  #define C_AE   &a01xx KP_N9 KP_N8 // æ
+  #define SC_OE  &a01xx KP_N4 KP_N0 // Œ
+  #define SC_AE  &a01xx KP_N9 KP_N8 // Æ
+  #define C_OE   &a01xx KP_N5 KP_N6 // œ
+  #define C_AE   &a02xx KP_N3 KP_N0 // æ
   #define C_SZ   &digraph S S // unsupported
   #define C_NTLD &digraph RA(N2) N // ñ
 #else
