@@ -109,8 +109,8 @@ include:
 
   # Ferris (STM32F072)
   # Note: not enough memory for ZMK Studio
-  - board: ferris//zmk
-    artifact-name: ferris
+  #- board: ferris//zmk
+  #  artifact-name: ferris
 
   # Corneish Zen (nRF52840)
   - board: corneish_zen_left//zmk
