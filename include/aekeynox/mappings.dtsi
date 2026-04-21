@@ -48,32 +48,28 @@
       #binding-cells = <2>;
       tap-ms = <0>;
       wait-ms = <0>;
-      bindings = <
-        &macro_param_1to1 &kp MACRO_PLACEHOLDER
-        &macro_param_2to1 &kp MACRO_PLACEHOLDER>;
+      bindings
+        = <&macro_param_1to1 &kp MACRO_PLACEHOLDER>
+        , <&macro_param_2to1 &kp MACRO_PLACEHOLDER>
+        ;
     };
 
-#ifdef ENABLE_ALT_KEYPAD
+    #ifdef ENABLE_ALT_KEYPAD
     a1xx: a1xx {
       compatible = "zmk,behavior-macro-two-param";
       #binding-cells = <2>;
       wait-ms = <20>;
       tap-ms = <20>;
       bindings =
-        = <&macro_press>
-        , <&kp LALT>
-        , <&macro_tap>
-        , <&kp KP_N1 &macro_param_1to1>
-        , <&macro_tap>
-        , <&kp MACRO_PLACEHOLDER &macro_param_2to1>
-        , <&macro_tap>
-        , <&kp MACRO_PLACEHOLDER>
-        , <&macro_release>
-        , <&kp LALT>
+        = <&macro_press &kp LALT>
+        , <&macro_tap &kp KP_N1>
+        , <&macro_param_1to1 &kp MACRO_PLACEHOLDER>
+        , <&macro_param_2to1 &kp MACRO_PLACEHOLDER>
+        , <&macro_release &kp LALT>
         ;
     };
     // a2xx, a01xx, a02xx
-#endif
+    #endif
 
   };
 };
