@@ -96,8 +96,14 @@
 
 #define C_MU   &kp PIPE  // µ
 #define C_EURO &kp RA(E) // €
-#define C_LGQT &kp N3    // "
-#define C_RGQT &kp N3    // "
+
+#ifdef ENABLE_ALT_KEYPAD
+  #define C_LGQT &a1xx KP_N7 KP_N4 // «
+  #define C_RGQT &a1xx KP_N7 KP_N5 // »
+#else
+  #define C_LGQT &kp N3 // "
+  #define C_RGQT &kp N3 // "
+#endif
 
 // circumflex accent
 #define C_ACRC &digraph LBKT Q // â

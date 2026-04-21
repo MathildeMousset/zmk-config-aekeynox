@@ -9,7 +9,7 @@
 // Uncomment one of the following lines if using a non-QWERTY layout:
 // (this sets an appropriate Symbols layer and relevant keyboard shortcuts)
 
-// #define KB_LAYOUT_AZERTY
+#define KB_LAYOUT_AZERTY
 // #define KB_LAYOUT_BEPO
 // #define KB_LAYOUT_BEPOLAR
 // #define KB_LAYOUT_DVORAK
@@ -24,11 +24,14 @@
 // #define MACOS
 // #define LINUX
 
+// [Expertmental]
+#define ENABLE_ALT_KEYPAD
+
 // [Experimental]
 // Uncomment one of the following lines to enable layout emulation:
 
 // #define KB_EMULATION_DVORAK           // assumes the host is in QWERTY
-// #define KB_EMULATION_ERGOL            // assumes the host is in QWERTY-intl or AZERTY
+#define KB_EMULATION_ERGOL            // assumes the host is in QWERTY-intl or AZERTY
 // #define KB_EMULATION_QWERTY_LAFAYETTE // assumes the host is in QWERTY-intl or AZERTY
 
 // [Experimental]
@@ -84,7 +87,7 @@
 //  + Escape under the left thumb (direct access)
 // Highly recommended for Vim users, obviously. :-)
 
-// #define VIM_NAVIGATION
+#define VIM_NAVIGATION
 
 // [Experimental]
 // Uncomment the following line to enable the "mod-hold behavior" on the left
