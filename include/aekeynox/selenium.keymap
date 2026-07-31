@@ -106,7 +106,7 @@
       )>;
     };
 
-    // 6. FnMedia layer -- F1..12 pad on the left hand, HRM on the right hand
+    // 7. FnMedia layer -- F1..12 pad on the left hand, HRM on the right hand
     //                  -- reset and bootloader reset on difficult thumb keys
     //                  -- could be completed with other rare keys
     //                  -- BT_SEL: bluetooth: 
@@ -114,15 +114,16 @@
     fn_media_layer: fn_media_layer {
       display-name = "FnMedia";
       bindings = <SELENIUM_KEYMAP_BINDINGS(
-        &trans  ,  &kp F1  &kp F2  &kp F3  &kp F4  &none   ,   &bt BT_SEL 2  &kp C_NEXT  &kp C_VOL_UP  &kp C_BRI_UP   &kp SLCK      ,  &trans ,
-        &trans  ,  &kp F5  &kp F6  &kp F7  &kp F8  &none   ,   &bt_sel1_clr  H_J C_PP    H_K C_MUTE    H_L C_AL_LOCK  H_SEMI PSCRN  ,  &trans ,
-        &trans  ,  &kp F9  &kp F10 &kp F11 &kp F12 &none   ,   &bt BT_SEL 0  &kp C_PREV  &kp C_VOL_DN  &kp C_BRI_DN   &kp INS       ,  &trans ,
-                           &trans , &bootloader , &trans   ,   &trans , &sys_reset , &studio_unlock
+        &trans  ,  &kp F1   &kp F2  &kp F3  &kp F4  &kp F5   ,   &bt BT_SEL 2  &kp C_NEXT  &kp C_VOL_UP  &kp C_BRI_UP   &none         ,  &trans ,
+        &trans  ,  &kp F6   &kp F7  &kp F8  &kp F9  &kp F10  ,   &bt_sel1_clr  H_J C_PP    H_K C_MUTE    H_L C_AL_LOCK  H_SEMI PSCRN  ,  &trans ,
+        &trans  ,  &kp F11  &kp F12 &none   &none   &none    ,   &bt BT_SEL 0  &kp C_PREV  &kp C_VOL_DN  &kp C_BRI_DN   &kp INS       ,  &trans ,
+                            &trans , &bootloader , &trans    ,   &trans , &sys_reset , &studio_unlock
       )>;
     };
 
   };
 };
+
 
 // Emulated layouts (experimental!)
 #ifdef KB_EMULATION_DVORAK
