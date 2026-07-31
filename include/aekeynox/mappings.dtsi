@@ -37,6 +37,9 @@
 
 / {
   behaviors {
+    // BT_CLR: clear the paired host for the selected profile
+    // BT_SEL: Select the 0-indexed bluetooth profile by number
+    // So I assume this key selects the profile 1 on tap, and clear the profile 1 on shift-tap.
     TWO_LEVEL_KEY(bt_sel1_clr, &bt BT_SEL 1, &bt BT_CLR)
   };
 

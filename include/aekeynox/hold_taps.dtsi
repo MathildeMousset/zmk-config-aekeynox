@@ -36,6 +36,7 @@
   #define ALT_CTL LALT
 #endif
 
+// Define nicknames for the home row mods (except shift, defined elsewhere)
 #define H_S &hrm GUI_OPT
 #define H_D &hrm CTL_CMD
 #define H_F &hrm ALT_CTL
@@ -43,6 +44,8 @@
 #define H_K &hrm CTL_CMD
 #define H_L &hrm GUI_OPT
 
+// Define HRM shift if option activated. 
+// Not sure about the pinky mod hold though.
 #if defined HRM_SHIFT && defined PINKY_MOD_HOLD
   #define H_A    &mhhrm LSHIFT
   #define H_SEMI &mhhrm RSHIFT
@@ -103,7 +106,7 @@
 #endif
 
 #if defined HT_TWO_THUMB_KEYS && !defined VIM_NAVIGATION
-  #define SYM_NUM_LAYER &sc NAV_NUM_LAYER CAPSLOCK
+  #define SYM_NUM_LAYER &sc NAV_NUM_LAYER CAPSLOCK   // layer tap with hold prefered
 #else
   #define SYM_NUM_LAYER &EZ_SL(NUM_LAYER)
 #endif
@@ -111,17 +114,17 @@
 #ifdef LHAND_SPACE
   #define LTHUMB_TT  &hrm CTL_CMD SPACE
   #define RTHUMB_TT  &magic_backspace
-  #define LTHUMB_HRM &lt NAV_LAYER SPACE
+  #define LTHUMB_HRM &lt NAV_LAYER SPACE        // layer tap with tap prefered
   #define RTHUMB_HRM &magic_backspace
-  #define LTHUMB_S34 &lt NAV_LAYER SPACE
+  #define LTHUMB_S34 &lt NAV_LAYER SPACE        // layer tap with tap prefered
   #define RTHUMB_S34 &magic_backspace_34_keys
 #else
   #define LTHUMB_TT  &hrm CTL_CMD BACKSPACE
   #define RTHUMB_TT  &magic_space
-  #define LTHUMB_HRM NAV_SC NAV_LAYER BACKSPACE
-  #define RTHUMB_HRM &lt NAV_LAYER SPACE
-  #define LTHUMB_S34 NAV_SC NAV_LAYER BACKSPACE
-  #define RTHUMB_S34 &lt S34_LAYER SPACE
+  #define LTHUMB_HRM NAV_SC NAV_LAYER BACKSPACE   // layer tap with hold-prefered with optionnal alt+mod behaviour
+  #define RTHUMB_HRM &lt NAV_LAYER SPACE          // layer tap with tap prefered
+  #define LTHUMB_S34 NAV_SC NAV_LAYER BACKSPACE   // layer tap with hold-prefered with optionnal alt+mod behaviour
+  #define RTHUMB_S34 &lt S34_LAYER SPACE          // layer tap with tap prefered
 #endif
 
 #ifdef HT_NONE
@@ -134,22 +137,23 @@
 #elifdef HT_THUMB_TAPS
   #define LTHUMB_TUCK   &EZ_SK(LSHIFT)
   #define LTHUMB_HOME   LTHUMB_TT
-  #define LTHUMB_REACH  &mt GUI_OPT REACH_TAP
-  #define RTHUMB_REACH  &mt ALT_CTL ENTER
+  #define LTHUMB_REACH  &mt GUI_OPT REACH_TAP     // mod tap with tap prefered
+  #define RTHUMB_REACH  &mt ALT_CTL ENTER         // mod tap with tap prefered
   #define RTHUMB_HOME   RTHUMB_TT
   #define RTHUMB_TUCK   &sym_shift_altgr
 #elifdef HT_HOME_ROW_MODS
   #define LTHUMB_TUCK   &EZ_SK(LSHIFT)
   #define LTHUMB_HOME   LTHUMB_HRM
-  #define LTHUMB_REACH  &sc HRM_LAYER REACH_TAP
-  #define RTHUMB_REACH  &sc HRM_LAYER ENTER
+  #define LTHUMB_REACH  &sc HRM_LAYER REACH_TAP   // layer tap with hold prefered
+  #define RTHUMB_REACH  &sc HRM_LAYER ENTER       // layer tap with hold prefered
   #define RTHUMB_HOME   RTHUMB_HRM
   #define RTHUMB_TUCK   &sym_shift_altgr
 #elifdef HT_TWO_THUMB_KEYS
-  #define LTHUMB_TUCK   &mt LSHIFT REACH_TAP
+  #define LTHUMB_TUCK   &mt LSHIFT REACH_TAP      // mod tap with tap prefered
+  #define RTHUMB_HOME   RTHUMB_TT
   #define LTHUMB_HOME   LTHUMB_S34
   #define LTHUMB_REACH  LTHUMB_TUCK
-  #define RTHUMB_REACH  &sc SYMBOLS_LAYER ENTER
+  #define RTHUMB_REACH  &sc SYMBOLS_LAYER ENTER   // layer tap with hold prefered
   #define RTHUMB_HOME   RTHUMB_S34
   #define RTHUMB_TUCK   RTHUMB_REACH
 #endif
@@ -168,18 +172,19 @@
  * Timing is Key!
  */
 
-#define EZ_SL(layer)  bsl (layer) (layer)
-#define EZ_SK(mod)    bsk (mod) (mod)
-#define EZ_LSK(mod)   lbsk (mod) (mod)
-&sl { ignore-modifiers; }; // keep one-shot-mods when chained into a one-shot-layer
-&sk { quick-release; };    // must-have! (lots of false positives otherwise)
+#define EZ_SL(layer)  bsl (layer) (layer)    // better sticky layer
+#define EZ_SK(mod)    bsk (mod) (mod)        // better sticky key
+#define EZ_LSK(mod)   lbsk (mod) (mod)       // better sticky key on another layer
 
-// add our common tap-hold parametesr to the default options
+&sl { ignore-modifiers; };     // keep one-shot-mods when chained into a one-shot-layer
+&sk { quick-release; };        // must-have! (lots of false positives otherwise)
+
+// add our common tap-hold parameters to the default options
 &mt {
   tapping-term-ms = <SHORT_TAPPING_TERM>;
   quick-tap-ms = <QUICK_TAP>;
 };
-
+// tap prefered
 &lt {
   tapping-term-ms = <TAPPING_TERM>;
   quick-tap-ms = <QUICK_TAP>;
@@ -195,6 +200,8 @@
       flavor = "tap-preferred";
       bindings = <&kp>, <&kp>;
     };
+
+    // HOLD PREFERRED
     OMIT_IF_NO_REF sc: space_cadet { // same as lt, but with hold-preferred
       compatible = "zmk,behavior-hold-tap";
       #binding-cells = <2>;
@@ -212,6 +219,7 @@
       wait-ms = <0>;
       bindings = <&macro_param_1to1>, <&macro_tap &sl MACRO_PLACEHOLDER>;
     };
+
     OMIT_IF_NO_REF bsl: better_sticky_layer {
       compatible = "zmk,behavior-hold-tap";
       #binding-cells = <2>;
