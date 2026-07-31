@@ -146,6 +146,7 @@
   #define LTHUMB_HOME   LTHUMB_HRM
   #define LTHUMB_REACH  &sc HRM_LAYER REACH_TAP   // layer tap with hold prefered
   #define RTHUMB_REACH  &sc HRM_LAYER ENTER       // layer tap with hold prefered
+  #define RTHUMB_HOME   RTHUMB_HRM
   #define RTHUMB_TUCK   &sym_shift_altgr
 #elifdef HT_TWO_THUMB_KEYS
   #define LTHUMB_TUCK   &mt LSHIFT REACH_TAP      // mod tap with tap prefered
