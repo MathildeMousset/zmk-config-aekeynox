@@ -134,3 +134,6 @@
 // instead of the Vimnav layer in Vim mode (thumbs are as VIM option, so is
 // the numrow)
 #define MATNAV_NAVIGATION
+
+// Activate the MARTINET layout
+#define MARTINET

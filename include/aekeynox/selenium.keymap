@@ -123,9 +123,9 @@
     vim_nav_layer: vim_nav_layer {
       display-name = "VimNav";
       bindings = <SELENIUM_KEYMAP_BINDINGS(
-        &trans  ,  &none    X_CTL_W  &vim_prev &vim_next &none     ,   &kp HOME &kp PG_DN &kp PG_UP &kp END   &kp DEL ,  &trans ,
-        &trans  ,  X_ALL    X_SAVE   X_SHTAB   &kp TAB   &none     ,   &kp LEFT &kp DOWN  &kp UP    &kp RIGHT &none   ,  &trans ,
-        &trans  ,  X_UNDO   X_CUT    X_COPY    X_PASTE   X_REDO    ,   X_MSC_L  X_MSC_D   X_MSC_U   X_MSC_R   &none   ,  &trans ,
+        &trans  ,  &none    X_CTL_W  &vim_prev &vim_next X_REDO    ,   &kp HOME &kp PG_DN &kp PG_UP &kp END   &kp DEL ,  &trans ,
+        &trans  ,  X_ALL    X_SAVE   X_SHTAB   &kp TAB   X_UNDO    ,   &kp LEFT &kp DOWN  &kp UP    &kp RIGHT &none   ,  &trans ,
+        &trans  ,  &none    X_CUT    X_COPY    X_PASTE   &none     ,   X_MSC_L  X_MSC_D   X_MSC_U   X_MSC_R   &none   ,  &trans ,
             &kp CAPS , &sc FN_MEDIA_LAYER DEL , &mo NUM_ROW_LAYER  ,   &trans ,  &mo FN_MEDIA_LAYER , &EZ_LSK(RALT)
       )>;
     };
@@ -151,10 +151,10 @@
     matnav_layer: matnav_layer {
       display-name = "MatNav";
       bindings = <SELENIUM_KEYMAP_BINDINGS(
-        &trans , &kp CAPS X_CTL_W  &vim_prev &vim_next   &none   ,   &kp PG_UP     &kp HOME    &kp UP     &kp END    &none ,  &trans ,
-        &trans , X_ALL    X_SAVE   X_SHTAB   &kp TAB     &none   ,   &kp PG_DN     &kp LEFT    &kp DOWN   &kp RIGHT  &none ,  &trans ,
-        &trans , X_UNDO   X_CUT    X_COPY    X_PASTE     X_REDO  ,   &none         &kp K_CMENU &none      &none      &none ,  &trans ,
-          &trans , &sc FN_MEDIA_LAYER DEL , &mo NUM_ROW_LAYER    ,   &trans , &mo FN_MEDIA_LAYER , &EZ_LSK(RALT)
+        &trans , &kp CAPS X_CTL_W  &vim_prev &vim_next  X_REDO  ,   &kp PG_UP  &kp HOME     &kp UP    &kp END    &none ,  &trans ,
+        &trans , X_ALL    X_SAVE   X_SHTAB   &kp TAB    X_UNDO  ,   &kp PG_DN  &kp LEFT     &kp DOWN  &kp RIGHT  &none ,  &trans ,
+        &trans , &none    X_CUT    X_COPY    X_PASTE    &none   ,   &none      &kp K_CMENU  &none     &none      &none ,  &trans ,
+          &trans , &sc FN_MEDIA_LAYER DEL , &mo NUM_ROW_LAYER   ,   &trans , &mo FN_MEDIA_LAYER , &EZ_LSK(RALT)
       )>;
     };
 
@@ -166,27 +166,26 @@
     num_row_layer: num_row_layer {
       display-name = "NumRow";
       bindings = <SELENIUM_KEYMAP_BINDINGS(
-        &trans  ,  &kp RS(N1) &kp RS(N2) &kp RS(N3) &kp RS(N4) &kp RS(N5)   ,   &kp LS(N6) &kp LS(N7) &kp LS(N8) &kp LS(N9) &kp LS(N0)  ,  &trans ,
-        &trans  ,  &kp N1     &kp N2     &kp N3     &kp N4     &kp N5       ,   &kp N6     &kp N7     &kp N8     &kp N9     &kp N0      ,  &trans ,
-        &trans  ,  &none      &none      &none      &none      &none        ,   S_MINUS    S_COMMA    S_DOT      S_COLON    S_FSLH      ,  &trans ,
-                                      &trans , &kp RS(SPACE) , &trans       ,   &trans , &kp LS(SPACE) , &kp RALT
+        &trans  ,  &kp RS(N1) &kp RS(N2) &kp RS(N3) &kp RS(N4) &kp RS(N5)  ,  &kp LS(N6) &kp LS(N7) &kp LS(N8) &kp LS(N9) &kp LS(N0) , &trans ,
+        &trans  ,  &kp N1     &kp N2     &kp N3     &kp N4     &kp N5      ,  &kp N6     &kp N7     &kp N8     &kp N9     &kp N0     , &trans ,
+        &trans  ,  &none      &none      S_MINUS    S_FSLH     &none       ,  &none      S_COMMA    S_DOT      S_COLON    &none      , &trans ,
+                                      &trans , &kp RS(SPACE) , &trans      ,  &trans , &kp LS(SPACE) , &kp RALT
       )>;
     };
 
     // 7. FnMedia layer -- F1..12 pad on the left hand, HRM on the right hand
     //                  -- reset and bootloader reset on difficult thumb keys
     //                  -- could be completed with other rare keys
-    //                  -- BT_SEL: bluetooth: Select the 0-indexed bluetooth profile by number
-    //                  -- &bt_sel1_clr: I assume this key selects the profile 1 on tap, and clear the profile 1 on shift-tap.
+    //                  
     //                  -- I got rid of the scrolllock which is useless to me
     //                  -- I also moved the Fn keys so that I have five per rows
     fn_media_layer: fn_media_layer {
       display-name = "FnMedia";
       bindings = <SELENIUM_KEYMAP_BINDINGS(
-        &trans  ,  &kp F1   &kp F2  &kp F3  &kp F4  &kp F5   ,   &bt BT_SEL 2  &kp C_NEXT  &kp C_VOL_UP  &kp C_BRI_UP   &to NUM_LOCK_LAYER  ,  &trans ,
-        &trans  ,  &kp F6   &kp F7  &kp F8  &kp F9  &kp F10  ,   &bt_sel1_clr  H_J C_PP    H_K C_MUTE    H_L C_AL_LOCK  H_SEMI PSCRN        ,  &trans ,
-        &trans  ,  &kp F11  &kp F12 &none   &none   &none    ,   &bt BT_SEL 0  &kp C_PREV  &kp C_VOL_DN  &kp C_BRI_DN   &kp INS             ,  &trans ,
-                            &trans , &bootloader , &trans    ,   &trans , &sys_reset , &studio_unlock
+        &trans  ,  &kp F1  &kp F2  &kp F3   &kp F4  &kp F5   ,  &none   &kp C_NEXT  &kp C_VOL_UP  &kp C_BRI_UP   &to NUM_LOCK_LAYER  ,  &trans ,
+        &trans  ,  &kp F6  &kp F7  &kp F8   &kp F9  &kp F10  ,  &none   H_J C_PP    H_K C_MUTE    H_L C_AL_LOCK  H_SEMI PSCRN        ,  &trans ,
+        &trans  ,  &none   &kp F11 &kp F12  &none   &none    ,  &none   &kp C_PREV  &kp C_VOL_DN  &kp C_BRI_DN   &none               ,  &trans ,
+                            &trans , &bootloader , &trans    ,  &trans , &sys_reset , &studio_unlock
       )>;
     };
 
@@ -196,10 +195,10 @@
     left_hand_layer: left_hand_layer {
       display-name = "LeftHand";
         bindings = <SELENIUM_KEYMAP_BINDINGS(
-          &trans , &kp SPACE  &kp C_VOL_UP   &kp UP    &none      &none      ,   &msc SCRL_UP    &mkp LCLK       &mmv MOVE_UP    &mkp RCLK        &none           , &trans ,
-          &trans , &kp DEL    &kp LEFT       &kp DOWN  &kp RIGHT  &kp PSCRN  ,   &msc SCRL_LEFT  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &msc SCRL_RIGHT , &trans ,
-          &trans , &kp ENTER  &kp C_VOL_DN   &none     &none      &none      ,   &msc SCRL_DOWN  &none           &td_id          &none            &none           , &trans ,
-                                            &trans , &trans , &trans         ,    &trans , &trans , &trans
+          &trans , &kp SPACE  &kp C_VOL_UP   &kp UP     &none      &none      ,   &msc SCRL_UP    &mkp LCLK       &mmv MOVE_UP    &mkp RCLK        &none           , &trans ,
+          &trans , &kp DEL    &kp LEFT       &kp DOWN   &kp RIGHT  &kp PSCRN  ,   &msc SCRL_LEFT  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &msc SCRL_RIGHT , &trans ,
+          &trans , &none      &kp C_VOL_DN   &kp ENTER  &none      &none      ,   &none           &none           &td_id          &msc SCRL_DOWN   &none           , &trans ,
+                                            &trans , &trans , &trans          ,   &trans , &trans , &trans
         )>;
       };
 
@@ -214,12 +213,15 @@
   #include "emulations/ergol.dtsi"
 #elif defined KB_EMULATION_QWERTY_LAFAYETTE
   #include "emulations/qwerty_lafayette.dtsi"
+#endif
 
 // Some layouts require extra layers to fit on the Quacken.
-#elif defined KB_LAYOUT_AZERTY
+#ifdef KB_LAYOUT_AZERTY
   #include "extra_layers/azerty.dtsi"
 #elif defined KB_LAYOUT_BEPO
   #include "extra_layers/bepo.dtsi"
 #elif defined KB_LAYOUT_ERGOL && defined HUMMINGBIRD
   #include "extra_layers/ergol_hummingbird.dtsi"
+#elif defined KB_LAYOUT_ERGOL && defined MARTINET
+  #include "extra_layers/ergol_martinet.dtsi"
 #endif
