@@ -109,6 +109,8 @@
     // 6. FnMedia layer -- F1..12 pad on the left hand, HRM on the right hand
     //                  -- reset and bootloader reset on difficult thumb keys
     //                  -- could be completed with other rare keys
+    //                  -- BT_SEL: bluetooth: 
+    //                  -- &bt_sel1_clr: I assume this key selects the profile 1 on tap, and clear the profile 1 on shift-tap.
     fn_media_layer: fn_media_layer {
       display-name = "FnMedia";
       bindings = <SELENIUM_KEYMAP_BINDINGS(
