@@ -14,12 +14,14 @@
 #define SYMBOLS_LAYER  2
 #define VIM_NAV_LAYER  3
 #define NAV_NUM_LAYER  4
-#define NUM_ROW_LAYER  5
-#define FN_MEDIA_LAYER 6
+#define MATNAV_LAYER   5
+#define NUM_ROW_LAYER  6
+#define FN_MEDIA_LAYER 7
+#define LEFT_MOUSE_LAYER 8
 
 // Potentially used by other keymaps deriving from this one, who may add extra layers.
 // Make sure this stays equal to <index_of_last_layer> + 1
-#define EXTRA_LAYERS_START_INDEX 7
+#define EXTRA_LAYERS_START_INDEX 9
 
 
 /**
@@ -91,7 +93,16 @@
   #define NAV_SC &sc
 #endif
 
+// I am using a variant of the VIM navigation: the same thumbs but a different custom layer.
 #ifdef VIM_NAVIGATION
+  // Choose between Vimnav and Matnav for the nav layer
+  #ifdef MATNAV_NAVIGATION
+    #define NAV_LAYER MATNAV_LAYER
+  #else
+    #define NAV_LAYER VIM_NAV_LAYER
+  #endif
+
+  // Define the rest
   #define NAV_LAYER VIM_NAV_LAYER
   #define NUM_LAYER NUM_ROW_LAYER
   #define HRM_LAYER NUM_ROW_LAYER
@@ -201,7 +212,7 @@
       bindings = <&kp>, <&kp>;
     };
 
-    // HOLD PREFERRED
+    // HOLD-PREFERRED
     OMIT_IF_NO_REF sc: space_cadet { // same as lt, but with hold-preferred
       compatible = "zmk,behavior-hold-tap";
       #binding-cells = <2>;
@@ -363,6 +374,22 @@
       #binding-cells = <2>;
       binding = <&hrm>;
       mods-to-hold = <(MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
+    };
+
+
+    // Tap dance behaviour no ms
+    td_id: tap_dance_0 {
+      compatible = "zmk,behavior-tap-dance";
+      #binding-cells = <0>;
+      tapping-term-ms = <200>;
+      bindings = <&macro_p>, <&macro_n>, <&macro_pn>, <&macro_ml>;
+    };
+
+    tp_num_lock: tap_dance_1 {
+      compatible = "zmk,behavior-tap-dance";
+      #binding-cells = <0>;
+      tapping-term-ms = <200>;
+      bindings = <&to NUM_LOCK_LAYER>, <&to BASE_LAYER>;
     };
   };
 };

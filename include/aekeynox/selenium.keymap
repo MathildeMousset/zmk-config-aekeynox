@@ -28,6 +28,52 @@
  */
 
 / {
+
+  // Define a couple of macros for a tap dance for n o m s et autres
+  macros {
+    macro_p: macro_p {
+        compatible = "zmk,behavior-macro";
+        #binding-cells = <0>;
+        wait-ms = <30>;
+        tap-ms = <30>;
+        bindings = <&kp LS(U) &kp A &kp K &kp M &kp L &kp H &kp I &kp D>;
+      };
+
+      macro_n: macro_n {
+        compatible = "zmk,behavior-macro";
+        #binding-cells = <0>;
+        wait-ms = <30>;
+        tap-ms = <30>;
+        bindings = <&kp LS(U) &kp E &kp SEMICOLON &kp S &kp S &kp D &kp K>;
+      };
+
+      macro_pn: macro_pn {
+        compatible = "zmk,behavior-macro";
+        #binding-cells = <0>;
+        wait-ms = <30>;
+        tap-ms = <30>;
+        bindings = <&macro_p>, <&kp SPACE>, <&macro_n>;
+      };
+
+      macro_ml: macro_ml {
+        compatible = "zmk,behavior-macro";
+        #binding-cells = <0>;
+        wait-ms = <50>;
+        tap-ms = <50>;
+        bindings 
+          = <&kp U &kp A &kp K &kp M &kp L &kp H &kp I &kp D>
+          , <&kp N>
+          , <&kp U &kp E &kp SEMICOLON &kp S &kp S &kp D &kp> 
+          , <K S_AT>
+          , <&kp D &kp R &kp L &kp W &kp D &kp F &kp K &kp J &kp D>
+          , <&kp N> 
+          , <&kp U &kp S &kp G>
+          , <&kp N> 
+          , <&kp E &kp J &kp COMMA>;
+      };  
+    };
+
+
   keymap {
     compatible = "zmk,keymap";
 
@@ -37,11 +83,11 @@
     base_layer: base_layer {
       display-name = "Base";
       bindings = <SELENIUM_KEYMAP_BINDINGS(
-        &kp TAB    ,  &kp Q  &kp W  &kp E  &kp R  &kp T   ,   &kp Y  &kp U  &kp I     &kp O   &kp P     ,  &kp BACKSPACE ,
-        &kp ESCAPE ,  HRM_A  HRM_S  HRM_D  HRM_F  &kp G   ,   &kp H  HRM_J  HRM_K     HRM_L   HRM_SEMI  ,  &kp ENTER     ,
-        &kp LSHIFT ,  &kp Z  &kp X  &kp C  &kp V  &kp B   ,   &kp N  &kp M  &kp COMMA &kp DOT &kp FSLH  ,  &kp RSHIFT    ,
-               LTHUMB_TUCK , LTHUMB_HOME , LTHUMB_REACH   ,   RTHUMB_REACH , RTHUMB_HOME , RTHUMB_TUCK
-      )>;
+        &none                    , &kp Q  &kp W  &kp E  &kp R  &kp T  ,  &kp Y  &kp U  &kp I     &kp O   &kp P    , &none                     ,
+        &EZ_SL(LEFT_MOUSE_LAYER) , HRM_A  HRM_S  HRM_D  HRM_F  &kp G  ,  &kp H  HRM_J  HRM_K     HRM_L   HRM_SEMI , &lt FN_MEDIA_LAYER SPACE  ,
+        &EZ_SL(NAV_NUM_LAYER)    , &kp Z  &kp X  &kp C  &kp V  &kp B  ,  &kp N  &kp M  &kp COMMA &kp DOT &kp FSLH , &tp_num_lock              ,
+                            LTHUMB_TUCK , LTHUMB_HOME , LTHUMB_REACH  ,  RTHUMB_REACH , RTHUMB_HOME , RTHUMB_TUCK
+      >;
     };
 
     // 1. NumLock layer -- a NavNum layer that stays on until deactivated without holding any key
@@ -93,6 +139,22 @@
       )>;
     };
 
+    // 5. MatNav layer  -- a mix between the vimnav and numnav layer
+    //                  -- keeps the powerful left block of VimNav
+    //                  -- has a cluster of arrows more similar to NavNum, for non vim users
+    //                  -- to be used with the NumRow, as an alternative to VimNav
+    matnav_layer: matnav_layer {
+      display-name = "MatNav";
+      bindings = <SELENIUM_KEYMAP_BINDINGS(
+        &trans , &kp CAPS X_CTL_W  &vim_prev &vim_next   &none   ,   &kp PG_UP     &kp HOME    &kp UP     &kp END    &none ,  &trans ,
+        &trans , X_ALL    X_SAVE   X_SHTAB   &kp TAB     &none   ,   &kp PG_DN     &kp LEFT    &kp DOWN   &kp RIGHT  &none ,  &trans ,
+        &trans , X_UNDO   X_CUT    X_COPY    X_PASTE     X_REDO  ,   &none         &kp K_CMENU &kp CAPS   &none      &none ,  &trans ,
+          &trans , &sc FN_MEDIA_LAYER DEL , &mo NUM_ROW_LAYER    ,   &trans , &mo FN_MEDIA_LAYER , &EZ_LSK(RALT)
+      >;
+    };
+
+
+
     // 5. NumRow layer -- bring the numbers to the homerow, keep shift+numbers for shortcuts and symbols
     //                 -- space becomes shift+space, which is a no-break space with some OS layouts (e.g. Ergol)
     //                 -- best used along with the VimNav layer
@@ -111,6 +173,7 @@
     //                  -- could be completed with other rare keys
     //                  -- BT_SEL: bluetooth: 
     //                  -- &bt_sel1_clr: I assume this key selects the profile 1 on tap, and clear the profile 1 on shift-tap.
+    //                  -- got rid of the scrolllock which is useless to me 
     fn_media_layer: fn_media_layer {
       display-name = "FnMedia";
       bindings = <SELENIUM_KEYMAP_BINDINGS(
@@ -120,6 +183,19 @@
                             &trans , &bootloader , &trans    ,   &trans , &sys_reset , &studio_unlock
       )>;
     };
+
+    // 8. Left-hand layer   -- some useful keys for when using the mouse (not a miror layer)
+    //                      -- try out alternative shape for volume
+    //                      -- test some mouse actions as well. Might go to other layer… or not if I like it.
+    left_hand_layer: left_hand_layer {
+      display-name = "LeftHand";
+        bindings = <SELENIUM_KEYMAP_BINDINGS(
+          &trans , &kp SPACE  &kp C_VOL_UP   &kp UP    &none      &none      ,   &msc SCRL_UP    &mkp LCLK       &mmv MOVE_UP    &mkp RCLK        &none           , &trans ,
+          &trans , &kp DEL    &kp LEFT       &kp DOWN  &kp RIGHT  &kp PSCRN  ,   &msc SCRL_LEFT  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &msc SCRL_RIGHT , &trans ,
+          &trans , &kp ENTER  &kp C_VOL_DN   &none     &none      &none      ,   &msc SCRL_DOWN  &none           &td_id          &none            &none           , &trans ,
+                                            &trans , &trans , &trans         ,    &trans , &trans , &trans
+        >;
+      };
 
   };
 };
