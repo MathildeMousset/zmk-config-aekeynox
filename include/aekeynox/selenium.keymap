@@ -91,12 +91,7 @@
                             LTHUMB_TUCK , LTHUMB_HOME , LTHUMB_REACH  ,  RTHUMB_REACH , RTHUMB_HOME , RTHUMB_TUCK
       )>;
     };
-
- &none                    , &kp Q  &kp W  &kp E  &kp R  &kp T  ,  &kp N  &kp U  &kp I      &kp O    &none    , &none                     ,
-        &EZ_SL(LEFT_MOUSE_LAYER) , HRM_A  HRM_S  HRM_D  HRM_F  &kp G  ,  &kp H  HRM_J  HRM_K      HRM_L    &kp P    , &lt FN_MEDIA_LAYER SPACE  ,
-        &none                    , &none  &kp X  &kp C  &kp V  &none  ,  &none  &kp M  &kp COMMA  &kp DOT  HRM_SEMI , &tp_num_lock              ,
-
-
+    
     // 1. NumLock layer -- a NavNum layer that stays on until deactivated without holding any key
     num_lock_layer: num_lock_layer {
       display-name = "NumLock";
