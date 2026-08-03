@@ -53,7 +53,7 @@
 // Uncomment the following line for an improved dead key support.
 // This only applies to some Hummingbird keymaps and layout emulations.
 
-// #define ENABLE_FANCY_DEAD_KEYS
+#define ENABLE_FANCY_DEAD_KEYS
 
 
 /******************************************************************************
