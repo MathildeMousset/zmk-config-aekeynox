@@ -15,30 +15,6 @@
 #include "hold_taps.dtsi" // defines thumb keys and homerow mods
 
 
-// EXTRA CONFIGS
-// Emulated layouts (experimental!)
-#ifdef KB_EMULATION_DVORAK
-  #include "emulations/dvorak.dtsi"
-#elif defined KB_EMULATION_ERGOL
-  #include "emulations/ergol.dtsi"
-#elif defined KB_EMULATION_QWERTY_LAFAYETTE
-  #include "emulations/qwerty_lafayette.dtsi"
-#endif
-
-// Some layouts require extra layers to fit on the Quacken.
-#ifdef KB_LAYOUT_AZERTY
-  #include "extra_layers/azerty.dtsi"
-#elif defined KB_LAYOUT_BEPO
-  #include "extra_layers/bepo.dtsi"
-#elif defined KB_LAYOUT_ERGOL && defined HUMMINGBIRD
-  #include "extra_layers/ergol_hummingbird.dtsi"
-#elif defined KB_LAYOUT_ERGOL && defined MARTINET
-  #include "extra_layers/ergol_martinet.dtsi"
-#elif defined KB_LAYOUT_ERGOL && defined HIRONDELLE
-  #include "extra_layers/ergol_hirondelle.dtsi"
-#endif
-
-
 /**
  * All keyboard layers are defined by blocks on a 42-key basis, as follows:
  *
@@ -231,3 +207,22 @@
 };
 
 
+// Emulated layouts (experimental!)
+#ifdef KB_EMULATION_DVORAK
+  #include "emulations/dvorak.dtsi"
+#elif defined KB_EMULATION_ERGOL
+  #include "emulations/ergol.dtsi"
+#elif defined KB_EMULATION_QWERTY_LAFAYETTE
+  #include "emulations/qwerty_lafayette.dtsi"
+#endif
+
+// Some layouts require extra layers to fit on the Quacken.
+#ifdef KB_LAYOUT_AZERTY
+  #include "extra_layers/azerty.dtsi"
+#elif defined KB_LAYOUT_BEPO
+  #include "extra_layers/bepo.dtsi"
+#elif defined KB_LAYOUT_ERGOL && defined HUMMINGBIRD
+  #include "extra_layers/ergol_hummingbird.dtsi"
+#elif defined KB_LAYOUT_ERGOL && defined MARTINET
+  #include "extra_layers/ergol_martinet.dtsi"
+#endif
