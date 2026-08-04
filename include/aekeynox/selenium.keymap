@@ -109,10 +109,10 @@
     symbols_layer: symbols_layer {
       display-name = "Symbols";
       bindings = <SELENIUM_KEYMAP_BINDINGS(
-        &trans  ,  S_CARET S_LT    S_GT    S_DLLR  S_PRCNT   ,   S_AT    S_AMPS  S_STAR  S_SQT   S_GRAVE  ,  &trans ,
-        &trans  ,  S_LBRC  S_LPAR  S_RPAR  S_RBRC  S_EQUAL   ,   S_BSLH  S_PLUS  S_MINUS S_FSLH  S_DQT    ,  &trans ,
-        &trans  ,  S_TILDE S_LBKT  S_RBKT  S_HASH  S_UNDER   ,   S_PIPE  S_EXCL  S_SEMI  S_COLON S_QMARK  ,  &trans ,
-                     SYM_NUM_LAYER , &kp SPACE , &kp ENTER   ,   &trans ,  &trans ,  &trans
+        &trans  ,  &none    S_LT    S_GT    S_DLLR  S_PRCNT  ,   S_AT    S_AMPS  S_STAR  S_SQT   &none   ,  &trans ,
+        S_TILDE ,  S_CARET  S_LPAR  S_RPAR  S_RBRC  S_EQUAL  ,   S_BSLH  S_PLUS  S_MINUS S_FSLH  S_GRAVE ,  S_PIPE ,
+        &trans  ,  S_LBRC   S_LBKT  S_RBKT  S_HASH  &none    ,   &none   S_EXCL  S_SEMI  S_COLON S_DQT   ,  &trans ,
+        SYM_NUM_LAYER , &kp SPACE ,  &sc EXTRA_SYM_LAYER ENTER   ,   &trans , &kp RALT ,  &trans
       )>;
     };
 
