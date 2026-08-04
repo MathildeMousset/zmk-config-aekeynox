@@ -106,6 +106,12 @@
     // 2. Symbols layer -- with Ergol, basically just an AltGr layer with custom thumb keys
     //                  -- can be redefined for non-AltGr layouts such as QWERTY-ANSI
     //                  -- since I use the underscore mostly from the symbol lyer, I inverted the hashtag and the underscore
+    //      -- Add access to a sticky layer that can contain the missing symbols on left reach thumb
+    // (it's not really required for this config (with keys on outer columns) but I kept it in case.
+    // It does ENTER on tap and access the new layer on hold.
+    //      -- Get read of the ?, which I can access through the base layer
+    //      -- Remplace the underscore by le hashtag (I only use the 1D)
+    //      -- Move the tilde and the pipe in outer columns
     symbols_layer: symbols_layer {
       display-name = "Symbols";
       bindings = <SELENIUM_KEYMAP_BINDINGS(
